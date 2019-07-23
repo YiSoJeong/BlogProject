@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.core.paginator import Paginator
 from .models import Blog
+from faker import Faker
 
 def home(request):
     blogs = Blog.objects #퀴리셋
@@ -29,3 +30,15 @@ def create(request): #입력받은 내용 > 디비에 넣어줌
     blog.pub_date = timezone.datetime.now()
     blog.save() # 객체를 디비에 저장 객체.delete는 반대
     return redirect('/blog/'+str(blog.id))
+
+def faker(request):
+
+    for i in range(5):
+        myfake = Faker()
+
+        blog = Blog()
+        blog.title = myfake.name()
+        blog.body = myfake.text()
+        blog.pub_date = timezone.datetime.now()
+        blog.save()
+    return redirect('home')

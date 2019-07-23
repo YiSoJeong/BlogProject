@@ -11,6 +11,7 @@ urlpatterns = [
     path('blog/', include('blogapp.urls')),
     path('portfolio/', portfolio.views.portfolio, name="portfolio"),
     path('account/', include('account.urls')),
+    path('faker/', blogapp.views.faker, name="faker"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
